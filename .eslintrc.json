@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "Literal[value=/\\[[#'\"(0-9a-z]/]",
+        "message": "Arbitrary values are not allowed — use a design token. Every colour, size, and spacing step belongs in app/theme.css. Allowed exceptions: arbitrary properties ([--token:...]) and arbitrary variants ([&:hover])."
+      },
+      {
+        "selector": "Literal[value=/(?:bg|text|border|ring|fill|stroke|from|via|to|divide|outline|decoration|accent|caret|shadow|placeholder)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-\\d{2,3}\\b/]",
+        "message": "Raw palette colours are not allowed — use a semantic token from app/theme.css (canvas, surface, line, ink, action, link, focus) so a rebrand stays a one-file change. brand-50..900 remains available for decorative use."
+      },
+      {
+        "selector": "Literal[value=/(?:bg|text|border|ring|fill|stroke|divide|decoration|outline|shadow|placeholder)-(?:white|black)\\b/]",
+        "message": "Raw neutral keywords are not allowed — use a semantic token. Use bg-surface or text-ink rather than white, and bg-canvas-inverse rather than black, so both themes stay coherent."
+      }
+    ]
+  }
 }
