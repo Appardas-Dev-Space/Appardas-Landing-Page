@@ -1,0 +1,36 @@
+name: Sync Meeting Action Items to Issues
+
+on:
+  push:
+    branches: [main, master, staging, production]
+    paths:
+      - "docs/meetings/**.md"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: File issues for new action items
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-meeting-issues.js
+
+      - name: Commit annotated notes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/meetings
+          git diff --cached --quiet || git commit -m "chore: file issues for meeting action items [skip ci]"
+          git push
