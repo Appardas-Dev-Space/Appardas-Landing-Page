@@ -12,7 +12,8 @@ const { execFileSync } = require("child_process");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 const MEETINGS_DIR = path.join(REPO_ROOT, "docs", "meetings");
-const REPO = process.env.GITHUB_REPOSITORY || "Appardas-Dev-Space/Main-Landing-Page";
+const REPO =
+  process.env.GITHUB_REPOSITORY || "Appardas-Dev-Space/Main-Landing-Page";
 const LABEL = "meeting-action";
 const DRY_RUN = process.argv.includes("--dry-run");
 
@@ -55,10 +56,12 @@ function ensureLabelExists() {
         "Auto-filed from meeting notes",
         "--force",
       ],
-      { stdio: "pipe" }
+      { stdio: "pipe" },
     );
   } catch (err) {
-    console.warn(`Warning: could not ensure label "${LABEL}" exists: ${err.message}`);
+    console.warn(
+      `Warning: could not ensure label "${LABEL}" exists: ${err.message}`,
+    );
   }
 }
 
@@ -81,7 +84,7 @@ function createIssue(title, body) {
       "--label",
       LABEL,
     ],
-    { encoding: "utf8" }
+    { encoding: "utf8" },
   ).trim();
   const match = output.match(/\/issues\/(\d+)\s*$/);
   if (!match) {
@@ -129,7 +132,9 @@ function processFile(filePath) {
 function main() {
   const files = listMeetingFiles(MEETINGS_DIR);
   if (files.length === 0) {
-    console.log(`No markdown files found under ${path.relative(REPO_ROOT, MEETINGS_DIR)}`);
+    console.log(
+      `No markdown files found under ${path.relative(REPO_ROOT, MEETINGS_DIR)}`,
+    );
     return;
   }
 

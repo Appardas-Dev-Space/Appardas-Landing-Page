@@ -12,9 +12,11 @@ Write action items as unchecked checkboxes, anywhere in the file:
 # Sprint 14 Standup — 2026-10-14
 
 ## Notes
+
 Discussed the new onboarding flow and flagged a bug in the signup form.
 
 ## Action Items
+
 - [ ] Fix signup form validation error on empty email
 - [ ] Follow up with design on onboarding mockups
 - [ ] Write migration script for the old user table
