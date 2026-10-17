@@ -1,0 +1,35 @@
+name: Deploy
+on:
+  push:
+    branches: [production, staging]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_ENV: ${{ github.ref_name == 'production' && 'production' || 'preview' }}
+  PROD_FLAG: ${{ github.ref_name == 'production' && '--prod' || '' }}
+
+jobs:
+  deploy:
+    if: github.ref_name == 'staging' || github.ref_name == 'production'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm install --global vercel@latest
+      - run: vercel pull --yes --environment=$VERCEL_ENV --token=${{ secrets.VERCEL_TOKEN }}
+      - run: vercel build $PROD_FLAG --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy
+        run: |
+          url=$(vercel deploy --prebuilt $PROD_FLAG --token=${{ secrets.VERCEL_TOKEN }})
+          echo "Deployed to $url"
+          echo "### Deployed to $url" >> "$GITHUB_STEP_SUMMARY"
