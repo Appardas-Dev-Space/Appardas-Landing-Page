@@ -1,0 +1,204 @@
+/**
+ * ============================================================================
+ * THEME — the single source of truth for the page's visual tone.
+ * ============================================================================
+ *
+ * HOW THIS WORKS
+ *   1. This file defines CSS custom properties on :root.
+ *   2. tailwind.config.ts maps token names to var(--token).
+ *   3. Components consume tokens via Tailwind utilities (bg-surface,
+ *      text-ink-muted, border-line) and never raw values.
+ *
+ * REBRANDING A CLIENT
+ *   Edit the values below. No component, layout, or config file changes.
+ *
+ * ONBOARDING A NEW CLIENT AT RUNTIME
+ *   Every token is a CSS custom property, so a second palette is a new
+ *   selector block (see the [data-theme] example further down), not a fork of
+ *   the codebase. Copy the :root block, change the values, change one
+ *   attribute on <html>.
+ *
+ * NAMING RULE
+ *   Tokens are named for their ROLE (canvas, surface, ink, action), never for
+ *   their colour (stone-50, amber-600). Literal names bake the current palette
+ *   into every component and defeat the point of having tokens at all.
+ *
+ * CONTRAST
+ *   Every pairing below is checked against WCAG AA. Text needs 4.5:1 (3:1 for
+ *   large text), non-text indicators and focus rings need 3:1. Measured
+ *   ratios are noted beside each value — re-verify them if you change one.
+ * ============================================================================
+ */
+
+:root {
+  /* --------------------------------------------------------------------------
+   * BRAND RAMP
+   * Stored as space-separated RGB channels (not hex) so Tailwind opacity
+   * modifiers work: bg-brand-600/50. The hex is noted for reference.
+   * Reserved for decorative use and illustrations — UI code should prefer the
+   * semantic tokens below.
+   * -------------------------------------------------------------------------- */
+  --color-brand-50: 255 251 235; /* #fffbeb */
+  --color-brand-100: 254 243 199; /* #fef3c7 */
+  --color-brand-200: 253 230 138; /* #fde68a */
+  --color-brand-300: 252 211 77; /* #fcd34d */
+  --color-brand-400: 251 191 36; /* #fbbf24 */
+  --color-brand-500: 245 158 11; /* #f59e0b */
+  --color-brand-600: 217 119 6; /* #d97706 */
+  --color-brand-700: 180 83 9; /* #b45309 */
+  --color-brand-800: 146 64 14; /* #92400e */
+  --color-brand-900: 120 53 15; /* #78350f */
+
+  /* --------------------------------------------------------------------------
+   * SEMANTIC COLOUR — LIGHT THEME (the default)
+   * This is the layer components actually use.
+   * -------------------------------------------------------------------------- */
+
+  /* Page background. */
+  --color-canvas: #fafaf9; /* stone-50 */
+
+  /* Raised surfaces: cards, header, footer-inverted areas. */
+  --color-surface: #ffffff;
+  --color-surface-muted: #f5f5f4; /* stone-100 — subtle fills, hover rows */
+
+  /* Borders. `line` is decorative (dividers, 3:1 not required).
+     `line-strong` is for interactive control borders, which DO need 3:1. */
+  --color-line: #e7e5e4; /* stone-200 */
+  --color-line-strong: #78716c; /* stone-500 — 4.6:1 on canvas */
+
+  /* Body text. */
+  --color-ink: #1c1917; /* stone-900 — 16.7:1 on canvas */
+  --color-ink-muted: #57534e; /* stone-600 — 7.3:1 on canvas */
+
+  /* Primary action (buttons, links in prose).
+     action + action-text = 5.0:1. Deliberately brand-700, not brand-600:
+     white on #d97706 is only 3.1:1 and fails AA for normal-size text. */
+  --color-action: #b45309; /* brand-700 */
+  --color-action-hover: #92400e; /* brand-800 — 7.1:1 with action-text */
+  --color-action-text: #ffffff; /* 5.0:1 on action */
+  --color-action-subtle: #fef3c7; /* brand-100 — tinted chips/badges */
+
+  /* Standalone links on canvas. 4.8:1. Do not use for large text only. */
+  --color-link: #b45309; /* brand-700 */
+
+  /* Focus ring. Needs 3:1 against adjacent background (WCAG 1.4.11). */
+  --color-focus: #b45309; /* 4.8:1 on canvas */
+  /* Focus ring for controls whose fill is --color-focus, e.g. bg-action.
+     The default ring is the SAME colour as that fill and measures 1:1 against
+     it, so it cannot be seen on its own button. No single ring colour can
+     contrast with both a dark fill and a light page, so action-filled controls
+     must draw an inset ring in their label colour instead:
+     5.0:1 on the action fill. Apply with the `.focus-ring-inset` utility. */
+  --color-focus-on-action: var(--color-action-text);
+  /* Focus ring for use on inverted surfaces. 10.5:1 on #1c1917 */
+  --color-focus-inverse: #fbbf24; /* brand-400 */
+
+  /* Inverted surfaces (footer). */
+  --color-ink-inverse: #fafaf9; /* 16.7:1 on inverse-bg */
+  --color-ink-inverse-muted: #a8a29e; /* stone-400 — 6.9:1 on inverse-bg */
+  --color-inverse-bg: #1c1917; /* stone-900 */
+
+  /* --------------------------------------------------------------------------
+   * TYPOGRAPHY
+   * --font-sans / --font-display read the CSS variables emitted by next/font
+   * in app/layout.tsx, so fonts are self-hosted and swap in without a request
+   * to a third party. Add new families there, not here.
+   * -------------------------------------------------------------------------- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* --------------------------------------------------------------------------
+   * SPACING
+   * The base spacing scale is Tailwind's rem-based numeric scale
+   * (p-4 = 1rem, gap-6 = 1.5rem, ...) — it is already a scale, and mirroring
+   * all ~40 steps into custom properties would add indirection without adding
+   * control. What IS worth naming is the page rhythm, because that is what
+   * changes between sections and between breakpoints.
+   *
+   * The "-lg" pairs are applied at the md breakpoint (768px) and up.
+   * -------------------------------------------------------------------------- */
+  --space-section-y: 3.5rem; /* 56px — vertical section padding, mobile */
+  --space-section-y-lg: 5rem; /* 80px — vertical section padding, >=768px */
+  --space-section-x: 1.25rem; /* 20px — horizontal gutter, mobile */
+  --space-section-x-lg: 2rem; /* 32px — horizontal gutter, >=768px */
+
+  /* Content widths. `prose` caps line length for body copy (roughly 65-75
+     characters) — use it for paragraphs, `content` for full-width layouts. */
+  --content-max-width: 72rem; /* 1152px */
+  --content-text-max-width: 42rem; /* 672px */
+
+  /* --------------------------------------------------------------------------
+   * RADII, SHADOWS
+   * -------------------------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --shadow-sm: 0 1px 2px 0 rgb(28 25 23 / 0.06);
+  --shadow-md: 0 4px 12px -2px rgb(28 25 23 / 0.1);
+  --shadow-lg: 0 12px 28px -8px rgb(28 25 23 / 0.16);
+}
+
+/* ============================================================================
+ * OPTIONAL DARK THEME
+ * ----------------------------------------------------------------------------
+ * Not enabled by default — the design brief asked for light only. It is here
+ * because it costs 12 lines and proves the mechanism: with semantic tokens,
+ * dark mode is a variable swap, not a rewrite.
+ *
+ * To enable, add data-theme="dark" to <html> in app/layout.tsx. To ship a
+ * second client under the same build, change that value to the client key and
+ * duplicate this block per client.
+ *
+ * Only SEMANTIC tokens are overridden. The brand ramp stays constant, since a
+ * ramp is a palette reference rather than a surface colour.
+ * ========================================================================== */
+
+[data-theme="dark"] {
+  --color-canvas: #1c1917; /* stone-900 */
+  --color-surface: #292524; /* stone-800 */
+  --color-surface-muted: #44403c; /* stone-700 */
+
+  --color-line: #44403c; /* stone-700 */
+  --color-line-strong: #a8a29e; /* stone-400 — 6.0:1 on surface */
+
+  --color-ink: #fafaf9; /* stone-50 — 16.7:1 on canvas */
+  --color-ink-muted: #a8a29e; /* stone-400 — 6.9:1 on canvas */
+
+  /* In dark, the action inverts: a bright fill carrying dark text reads as
+     emphasis, where a dark fill would simply disappear into the canvas. */
+  --color-action: #fbbf24; /* brand-400 */
+  --color-action-hover: #fcd34d; /* brand-300 */
+  --color-action-text: #1c1917; /* stone-900 — 10.5:1 on action */
+  --color-action-subtle: #44403c; /* stone-700 */
+
+  --color-link: #fbbf24; /* 10.5:1 on canvas */
+  --color-focus: #fbbf24; /* 10.5:1 on canvas */
+
+  /* The inverse pair swaps roles, so the footer inverts correctly in dark. */
+  --color-inverse-bg: #fafaf9;
+  --color-ink-inverse: #1c1917;
+  --color-ink-inverse-muted: #57534e; /* stone-600 — 7.3:1 on #fafaf9 */
+  --color-focus-inverse: #b45309; /* brand-700 — 4.8:1 on #fafaf9 */
+}
