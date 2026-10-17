@@ -2,13 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Global styles.
+ *
+ * On the reset: `@tailwind base` expands to Tailwind Preflight, which already
+ * provides the bulk of it — zeroed default margins, `box-sizing: border-box`,
+ * border-style reset on every element, `img, video { max-width: 100% }`,
+ * inherited heading font-size, and a consistent form-control appearance.
+ * Re-stating those rules here would be duplication, so what follows is only
+ * what Preflight cannot know about — our tokens, our rhythm, our overflow
+ * guarantees.
+ */
+
 @layer base {
+  /* ---------------------------------------------------------------------------
+   * Typography
+   * ------------------------------------------------------------------------- */
+
+  html {
+    font-family: var(--font-sans);
+    font-size: 100%;
+    line-height: var(--leading-normal);
+    color: var(--color-ink);
+    background-color: var(--color-canvas);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings use the display face. `font-size` is left to the Tailwind
+   * `text-*` utilities so the size stays with the layout that uses it. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    /* Avoids orphaned words on the last line of a heading. */
+    text-wrap: balance;
+  }
+
+  p {
+    /* Avoids single-word last lines in body copy. */
+    text-wrap: pretty;
+  }
+
+  /* A visible, reliable monospace default for code in future sections. */
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: var(--font-mono);
+  }
+
+  /* ---------------------------------------------------------------------------
+   * No horizontal scroll
+   * ---------------------------------------------------------------------------
+   * The acceptance criterion is a no-horizontal-scroll guarantee at 360px,
+   * 768px and 1280px. The fix is to stop content from establishing width, not
+   * to hide the symptom with `overflow-x: hidden` on <html> — that hides real
+   * layout bugs while still trapping the scrollable area on some browsers.
+   */
+
+  html,
   body {
-    @apply bg-stone-50 text-stone-900 antialiased;
-    font-family:
-      "Inter",
-      system-ui,
-      -apple-system,
-      sans-serif;
+    /* Long unbroken strings (emails, URLs, token names) are the most common
+       cause of overflow at 360px. `break-word` splits only a word that would
+       otherwise escape its line box, so ordinary copy is unaffected. */
+    overflow-wrap: break-word;
+  }
+
+  /* Content that is legitimately wider than the viewport scrolls inside its own
+     box rather than pushing the page sideways. Tables are deliberately excluded
+     — `display: block` on a <table> discards its internal table layout, so a
+     wide table should instead be wrapped in `.overflow-x-auto` by its section. */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Never size anything off the viewport width: `100vw` includes the
+     scrollbar gutter and overflows by exactly that amount. */
+  body {
+    max-width: 100%;
+  }
+
+  /* ---------------------------------------------------------------------------
+   * Focus
+   * ---------------------------------------------------------------------------
+   * AC: keyboard focus is visible on every interactive element.
+   *
+   * `:focus-visible` rather than `:focus` so the ring appears for keyboard and
+   * assistive-tech navigation but not on mouse press. The ring uses
+   * `outline` rather than `box-shadow` because outlines follow border-radius
+   * and are drawn outside the element, so they stay visible on any background
+   * and are not clipped by `overflow: hidden` ancestors.
+   *
+   * The one rule to never break: do not set `outline: none` anywhere without
+   * providing an equivalent replacement.
+   * ------------------------------------------------------------------------- */
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* Mouse and touch focus stays clean; keyboard focus keeps the ring. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Documented exception to the rule above. <main> is the skip link's target
+     and is focusable programmatically (tabindex="-1"); a ring around the
+     entire viewport after activating the skip link is noise, not information.
+     Scoped to <main> so it cannot be applied to any interactive element. */
+  main:focus,
+  main:focus-visible {
+    outline: none;
+  }
+
+  /* Windows High Contrast / forced-colors mode ignores authored colours, so
+     fall back to the system focus indicator. */
+  @media (forced-colors: active) {
+    :focus-visible {
+      outline: 2px solid CanvasText;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+   * Motion & selection
+   * ------------------------------------------------------------------------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-action-subtle);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /**
+   * Focus indicator for controls whose fill matches --color-focus — in
+   * practice, anything using `bg-action`.
+   *
+   * The default ring is `--color-focus`, which is also `--color-action`, so on
+   * an amber button it measures 1:1 against the fill and cannot be seen. No
+   * single ring colour can contrast with both a dark fill and a light page, so
+   * the indicator is drawn inside the control instead of outside it.
+   *
+   * An inset box-shadow is used rather than a negative outline offset because
+   * it stays inside the element's own box, so `overflow: hidden` on an ancestor
+   * cannot clip it.
+   *
+   * The `outline: none` below is the documented exception: it is replaced, not
+   * removed, by the box-shadow ring — which measures 5.0:1 on the action fill.
+   */
+  .focus-ring-inset:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-focus-on-action);
   }
 }
