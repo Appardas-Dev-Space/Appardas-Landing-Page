@@ -1,13 +1,14 @@
+import { AboutUs } from "@/components/sections/AboutUs";
 import { Container } from "@/components/layout/Container";
 import { siteConfig } from "./site.config";
 
 /**
  * Home page.
  *
- * LP-04 provides the sticky navigation bar and section targets (#about,
- * #services, #team, #contact) so smooth scrolling, scroll-offset, and active
- * link highlight can be verified end-to-end. Full section content lands in
- * LP-05 to LP-08.
+ * page.tsx serves as a template for the "About Us" landing page (LP-05) and 
+ * the subsequent sections (LP-06, LP-07, LP-08). The content is loaded from
+ * `@/content/about.json` for the About Us section, while the other sections
+ * currently contain placeholder content.
  */
 export default function HomePage() {
   return (
@@ -46,33 +47,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* About Section Target (LP-05) */}
-      <section
-        id="about"
-        className="border-t border-line bg-surface py-section-y md:py-section-y-lg"
-      >
-        <Container className="max-w-prose">
-          <h2 className="text-2xl font-bold md:text-3xl">About Us</h2>
-          <p className="mt-4 text-ink-muted">
-            About section placeholder (scheduled for LP-05). Explains the
-            company mission, story, and values for SME digitalization.
-          </p>
-        </Container>
-      </section>
-
-      {/* Services Section Target (LP-06) */}
-      <section
-        id="services"
-        className="border-t border-line bg-canvas py-section-y md:py-section-y-lg"
-      >
-        <Container className="max-w-prose">
-          <h2 className="text-2xl font-bold md:text-3xl">Services</h2>
-          <p className="mt-4 text-ink-muted">
-            Services grid placeholder (scheduled for LP-06). Covers digital
-            transformation, software engineering, and automation solutions.
-          </p>
-        </Container>
-      </section>
+      {/* About Section (LP-05) */}
+      <AboutUs />
 
       {/* Meet the Team Section Target (LP-07) */}
       <section
@@ -86,6 +62,8 @@ export default function HomePage() {
           </p>
         </Container>
       </section>
+
+      {/* Contact Us Section moved to /contact (LP-08) — placeholder lives there. */}
 
       {/* Contact Us Section Target (LP-08) */}
       <section
