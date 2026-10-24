@@ -13,10 +13,11 @@ export default function ServicesPage() {
       className="border-t border-line bg-canvas py-section-y md:py-section-y-lg"
     >
       <Container className="max-w-prose">
-        <h2 className="text-2xl font-bold md:text-3xl">Services</h2>
+        <h4 className="text-2xl font-bold md:text-3xl">Services</h4>
+        <h1>Everything your business needs to meet the digital space.</h1>
         <p className="mt-4 text-ink-muted">
-          Services grid placeholder (scheduled for LP-06). Covers digital
-          transformation, software engineering, and automation solutions.
+          Three focused services designed for Small and Medium Enterprises, 
+          tech businesses, and daily mobile users.
         </p>
       </Container>
     </section>
