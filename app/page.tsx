@@ -5,15 +5,14 @@ import { siteConfig } from "./site.config";
 /**
  * Home page.
  *
- * page.tsx serves as a template for the "About Us" landing page (LP-05) and 
- * the subsequent sections (LP-06, LP-07, LP-08). The content is loaded from
- * `@/content/about.json` for the About Us section, while the other sections
- * currently contain placeholder content.
+ * Renders the intro and the About Us section (LP-05). The remaining
+ * sections live on their own pages: /services (LP-06), /team (LP-07) and
+ * /contact (LP-08) — placeholders are served until content is delivered.
  */
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Intro / Hero Area */}
+      {/* Intro */}
       <section className="py-section-y md:py-section-y-lg">
         <Container className="max-w-prose">
           <p className="text-sm font-semibold uppercase tracking-wide text-link">
@@ -32,6 +31,12 @@ export default function HomePage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
+              href="#about"
+              className="rounded-md border border-line-strong px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-surface-muted"
+            >
+              About Us
+            </a>
+            <a
               href="#contact"
               className="focus-ring-inset rounded-md bg-action px-5 py-3 text-sm font-semibold text-action-text shadow-sm transition-colors hover:bg-action-hover"
             >
@@ -49,42 +54,6 @@ export default function HomePage() {
 
       {/* About Section (LP-05) */}
       <AboutUs />
-
-      {/* Meet the Team Section Target (LP-07) */}
-      <section
-        id="team"
-        className="border-t border-line bg-surface py-section-y md:py-section-y-lg"
-      >
-        <Container className="max-w-prose">
-          <h2 className="text-2xl font-bold md:text-3xl">Meet the Team</h2>
-          <p className="mt-4 text-ink-muted">
-            Team and staff digital ID teaser placeholder (scheduled for LP-07).
-          </p>
-        </Container>
-      </section>
-
-      {/* Contact Us Section moved to /contact (LP-08) — placeholder lives there. */}
-
-      {/* Contact Us Section Target (LP-08) */}
-      <section
-        id="contact"
-        className="border-t border-line bg-canvas py-section-y md:py-section-y-lg"
-      >
-        <Container className="max-w-prose">
-          <h2 className="text-2xl font-bold md:text-3xl">Contact Us</h2>
-          <p className="mt-4 text-ink-muted">
-            Inquiry and project kickoff placeholder (scheduled for LP-08).
-          </p>
-          <div className="mt-6">
-            <a
-              href="mailto:contact@appardas.com"
-              className="focus-ring-inset inline-flex rounded-md bg-action px-5 py-3 text-sm font-semibold text-action-text shadow-sm transition-colors hover:bg-action-hover"
-            >
-              Send an Inquiry
-            </a>
-          </div>
-        </Container>
-      </section>
     </div>
   );
 }

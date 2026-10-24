@@ -3,8 +3,7 @@ import { Container } from "@/components/layout/Container";
 /**
  * Contact Us section page (LP-08).
  *
- * Placeholder content — the inquiry form lands with LP-08. Lives at
- * `/contact` so the home page stays focused on the intro + About story.
+ * Contact Us page Lives at `/contact` so that the home page only shows intro + About story.
  */
 export default function ContactPage() {
   return (
