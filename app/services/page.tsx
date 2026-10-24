@@ -1,7 +1,7 @@
- /* Services section page (LP-06).*/
+/* Services section page (LP-06).*/
 
-import { Container } from '@/components/layout/Container'
-import Link from 'next/link'
+import { Container } from "@/components/layout/Container"; 
+import Link from "next/link";
 
 /** One service card: decorative icon, title, short description, optional CTA. */
 interface Service {
@@ -93,5 +93,5 @@ export default function ServicesPage() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

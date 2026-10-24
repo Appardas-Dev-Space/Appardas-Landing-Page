@@ -1,5 +1,6 @@
 import { AboutUs } from "@/components/sections/AboutUs";
 import { Container } from "@/components/layout/Container";
+import Link from "next/link";
 import { siteConfig } from "./site.config";
 
 /**
@@ -30,24 +31,18 @@ export default function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#about"
-              className="rounded-md border border-line-strong px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-surface-muted"
-            >
-              About Us
-            </a>
-            <a
-              href="#contact"
+            <Link
+              href="/contact#contact"
               className="focus-ring-inset rounded-md bg-action px-5 py-3 text-sm font-semibold text-action-text shadow-sm transition-colors hover:bg-action-hover"
             >
               Get in Touch
-            </a>
-            <a
-              href="#services"
+            </Link>
+            <Link
+              href="/services#services"
               className="rounded-md border border-line-strong px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-surface-muted"
             >
               Explore Services
-            </a>
+            </Link>
           </div>
         </Container>
       </section>
@@ -55,5 +50,5 @@ export default function HomePage() {
       {/* About Section (LP-05) */}
       <AboutUs />
     </div>
-  );
+  )
 }

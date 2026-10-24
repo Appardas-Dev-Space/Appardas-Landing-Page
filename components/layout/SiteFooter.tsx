@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import { siteConfig } from '@/app/site.config'
-import { Container } from './Container'
-import { SocialIcon } from './SocialIcon'
+import { siteConfig } from "@/app/site.config";
+import { Container } from "./Container";
+import { SocialIcon } from "./SocialIcon";
 
 /**
  * Page footer — copyright, Privacy Notice, and social links.
