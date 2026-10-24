@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout/Container";
+import { Container } from '@/components/layout/Container'
 
 /**
  * Contact Us section page (LP-08).
@@ -26,5 +26,5 @@ export default function ContactPage() {
         </div>
       </Container>
     </section>
-  );
+  )
 }

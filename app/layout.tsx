@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import type { Metadata } from 'next'
+import { Inter, Space_Grotesk } from 'next/font/google'
 
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from '@/components/layout/SiteFooter'
+import { SiteHeader } from '@/components/layout/SiteHeader'
 
-import { siteConfig } from "./site.config";
-import "./theme.css";
-import "./globals.css";
+import { siteConfig } from './site.config'
+import './theme.css'
+import './globals.css'
 
 /**
  * Fonts are self-hosted via next/font, which emits `--font-inter` and
@@ -18,22 +18,22 @@ import "./globals.css";
  * declarations in app/theme.css.
  */
 const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-space-grotesk",
-});
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-space-grotesk',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: siteConfig.name,
   description: siteConfig.tagline,
-};
+}
 
 /**
  * The page shell: skip link, header slot, main content area, footer.
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
@@ -67,5 +67,5 @@ export default function RootLayout({
         <SiteFooter />
       </body>
     </html>
-  );
+  )
 }

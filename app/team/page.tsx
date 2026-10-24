@@ -1,4 +1,4 @@
-import { Container } from "@/components/layout/Container";
+import { Container } from '@/components/layout/Container'
 
 /**
  * Meet the Team section page (LP-07).
@@ -19,5 +19,5 @@ export default function TeamPage() {
         </p>
       </Container>
     </section>
-  );
+  )
 }

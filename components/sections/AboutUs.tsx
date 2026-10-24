@@ -1,15 +1,15 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-import { Container } from "@/components/layout/Container";
-import about from "@/content/about.json";
+import { Container } from '@/components/layout/Container'
+import about from '@/content/about.json'
 
 /** Heading level to token-based type style, so the content file stays the
  * single place that controls both copy and heading hierarchy. */
 const HEADING_STYLES: Readonly<Record<number, string>> = {
-  1: "text-3xl font-bold md:text-4xl",
-  2: "text-2xl font-bold md:text-3xl",
-  3: "text-xl font-bold",
-};
+  1: 'text-3xl font-bold md:text-4xl',
+  2: 'text-2xl font-bold md:text-3xl',
+  3: 'text-xl font-bold',
+}
 
 /**
  * About Us section (LP-05).
@@ -23,8 +23,8 @@ const HEADING_STYLES: Readonly<Record<number, string>> = {
  * copy is in place until then.
  */
 export function AboutUs() {
-  const { eyebrow, heading, paragraphs } = about;
-  const headingStyle = HEADING_STYLES[heading.level] ?? HEADING_STYLES[2];
+  const { eyebrow, heading, paragraphs } = about
+  const headingStyle = HEADING_STYLES[heading.level] ?? HEADING_STYLES[2]
 
   return (
     <section
@@ -69,5 +69,5 @@ export function AboutUs() {
         </div>
       </Container>
     </section>
-  );
+  )
 }

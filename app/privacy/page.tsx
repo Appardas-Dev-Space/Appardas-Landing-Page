@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
 
-import { siteConfig } from "@/app/site.config";
+import { siteConfig } from '@/app/site.config'
 
 export const metadata: Metadata = {
   title: `Privacy Notice — ${siteConfig.name}`,
   description: `How ${siteConfig.legalName} collects and uses personal data.`,
-};
+}
 
 /**
  * Privacy Notice stub.
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <h1 className="text-3xl font-bold md:text-4xl">Privacy Notice</h1>
 
         <p className="mt-4 text-ink-muted">
-          This page is a placeholder. The full privacy policy for{" "}
+          This page is a placeholder. The full privacy policy for{' '}
           {siteConfig.legalName} has not been published yet.
         </p>
 
@@ -35,5 +35,5 @@ export default function PrivacyPage() {
         </p>
       </div>
     </div>
-  );
+  )
 }

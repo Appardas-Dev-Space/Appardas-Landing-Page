@@ -6,149 +6,149 @@
 // Usage: node scripts/sync-meeting-issues.js [--dry-run]
 // Requires: gh CLI authenticated (GH_TOKEN/GITHUB_TOKEN env var in CI).
 
-const fs = require("fs");
-const path = require("path");
-const { execFileSync } = require("child_process");
+const fs = require('fs')
+const path = require('path')
+const { execFileSync } = require('child_process')
 
-const REPO_ROOT = path.resolve(__dirname, "..");
-const MEETINGS_DIR = path.join(REPO_ROOT, "docs", "meetings");
+const REPO_ROOT = path.resolve(__dirname, '..')
+const MEETINGS_DIR = path.join(REPO_ROOT, 'docs', 'meetings')
 const REPO =
-  process.env.GITHUB_REPOSITORY || "Appardas-Dev-Space/Main-Landing-Page";
-const LABEL = "meeting-action";
-const DRY_RUN = process.argv.includes("--dry-run");
+  process.env.GITHUB_REPOSITORY || 'Appardas-Dev-Space/Main-Landing-Page'
+const LABEL = 'meeting-action'
+const DRY_RUN = process.argv.includes('--dry-run')
 
-const ACTION_ITEM_RE = /^(\s*-\s\[ \]\s)(.+?)\s*$/;
-const ALREADY_FILED_RE = /\(#\d+\)\s*$/;
+const ACTION_ITEM_RE = /^(\s*-\s\[ \]\s)(.+?)\s*$/
+const ALREADY_FILED_RE = /\(#\d+\)\s*$/
 
 function listMeetingFiles(dir) {
-  if (!fs.existsSync(dir)) return [];
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  let files = [];
+  if (!fs.existsSync(dir)) return []
+  const entries = fs.readdirSync(dir, { withFileTypes: true })
+  let files = []
   for (const entry of entries) {
-    const full = path.join(dir, entry.name);
+    const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
-      files = files.concat(listMeetingFiles(full));
+      files = files.concat(listMeetingFiles(full))
     } else if (
       entry.isFile() &&
-      entry.name.endsWith(".md") &&
-      entry.name.toLowerCase() !== "readme.md"
+      entry.name.endsWith('.md') &&
+      entry.name.toLowerCase() !== 'readme.md'
     ) {
-      files.push(full);
+      files.push(full)
     }
   }
-  return files;
+  return files
 }
 
 function ensureLabelExists() {
-  if (DRY_RUN) return;
+  if (DRY_RUN) return
   try {
     execFileSync(
-      "gh",
+      'gh',
       [
-        "label",
-        "create",
+        'label',
+        'create',
         LABEL,
-        "--repo",
+        '--repo',
         REPO,
-        "--color",
-        "BFDADC",
-        "--description",
-        "Auto-filed from meeting notes",
-        "--force",
+        '--color',
+        'BFDADC',
+        '--description',
+        'Auto-filed from meeting notes',
+        '--force',
       ],
-      { stdio: "pipe" },
-    );
+      { stdio: 'pipe' },
+    )
   } catch (err) {
     console.warn(
       `Warning: could not ensure label "${LABEL}" exists: ${err.message}`,
-    );
+    )
   }
 }
 
 function createIssue(title, body) {
   if (DRY_RUN) {
-    console.log(`[dry-run] would create issue: ${title}`);
-    return "DRYRUN";
+    console.log(`[dry-run] would create issue: ${title}`)
+    return 'DRYRUN'
   }
   const output = execFileSync(
-    "gh",
+    'gh',
     [
-      "issue",
-      "create",
-      "--repo",
+      'issue',
+      'create',
+      '--repo',
       REPO,
-      "--title",
+      '--title',
       title,
-      "--body",
+      '--body',
       body,
-      "--label",
+      '--label',
       LABEL,
     ],
-    { encoding: "utf8" },
-  ).trim();
-  const match = output.match(/\/issues\/(\d+)\s*$/);
+    { encoding: 'utf8' },
+  ).trim()
+  const match = output.match(/\/issues\/(\d+)\s*$/)
   if (!match) {
-    throw new Error(`Could not parse issue number from gh output: ${output}`);
+    throw new Error(`Could not parse issue number from gh output: ${output}`)
   }
-  return match[1];
+  return match[1]
 }
 
 function processFile(filePath) {
-  const relPath = path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
-  const original = fs.readFileSync(filePath, "utf8");
-  const lines = original.split(/\r?\n/);
-  let changed = false;
-  let inFence = false;
+  const relPath = path.relative(REPO_ROOT, filePath).replace(/\\/g, '/')
+  const original = fs.readFileSync(filePath, 'utf8')
+  const lines = original.split(/\r?\n/)
+  let changed = false
+  let inFence = false
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+    const line = lines[i]
     if (/^\s*```/.test(line)) {
-      inFence = !inFence;
-      continue;
+      inFence = !inFence
+      continue
     }
-    if (inFence) continue;
+    if (inFence) continue
 
-    const m = line.match(ACTION_ITEM_RE);
-    if (!m) continue;
-    if (ALREADY_FILED_RE.test(line)) continue;
+    const m = line.match(ACTION_ITEM_RE)
+    if (!m) continue
+    if (ALREADY_FILED_RE.test(line)) continue
 
-    const prefix = m[1];
-    const text = m[2];
-    const title = text.length > 100 ? text.slice(0, 97) + "..." : text;
-    const body = `Filed automatically from meeting notes.\n\nSource: \`${relPath}\`\n\n> ${text}`;
+    const prefix = m[1]
+    const text = m[2]
+    const title = text.length > 100 ? text.slice(0, 97) + '...' : text
+    const body = `Filed automatically from meeting notes.\n\nSource: \`${relPath}\`\n\n> ${text}`
 
-    console.log(`Filing issue for: ${text}`);
-    const issueNumber = createIssue(title, body);
-    lines[i] = `${prefix}${text} (#${issueNumber})`;
-    changed = true;
+    console.log(`Filing issue for: ${text}`)
+    const issueNumber = createIssue(title, body)
+    lines[i] = `${prefix}${text} (#${issueNumber})`
+    changed = true
   }
 
   if (changed && !DRY_RUN) {
-    fs.writeFileSync(filePath, lines.join("\n"), "utf8");
+    fs.writeFileSync(filePath, lines.join('\n'), 'utf8')
   }
-  return changed;
+  return changed
 }
 
 function main() {
-  const files = listMeetingFiles(MEETINGS_DIR);
+  const files = listMeetingFiles(MEETINGS_DIR)
   if (files.length === 0) {
     console.log(
       `No markdown files found under ${path.relative(REPO_ROOT, MEETINGS_DIR)}`,
-    );
-    return;
+    )
+    return
   }
 
-  ensureLabelExists();
+  ensureLabelExists()
 
-  let anyChanged = false;
+  let anyChanged = false
   for (const file of files) {
-    const changed = processFile(file);
-    anyChanged = anyChanged || changed;
+    const changed = processFile(file)
+    anyChanged = anyChanged || changed
   }
 
   if (!anyChanged) {
-    console.log("No new action items to file.");
+    console.log('No new action items to file.')
   }
 }
 
-main();
+main()

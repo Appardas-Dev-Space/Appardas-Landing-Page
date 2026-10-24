@@ -1,6 +1,6 @@
-import { AboutUs } from "@/components/sections/AboutUs";
-import { Container } from "@/components/layout/Container";
-import { siteConfig } from "./site.config";
+import { AboutUs } from '@/components/sections/AboutUs'
+import { Container } from '@/components/layout/Container'
+import { siteConfig } from './site.config'
 
 /**
  * Home page.
@@ -55,5 +55,5 @@ export default function HomePage() {
       {/* About Section (LP-05) */}
       <AboutUs />
     </div>
-  );
+  )
 }

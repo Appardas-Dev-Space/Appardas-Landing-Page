@@ -11,55 +11,55 @@
  *   app/site.config.ts — their name, links, legal details
  */
 
-export type SocialPlatform = "linkedin" | "x" | "github" | "youtube";
+export type SocialPlatform = 'linkedin' | 'x' | 'github' | 'youtube'
 
 export interface SocialLink {
   /** Visible-to-AT label. Do not rely on the icon alone to convey this. */
-  readonly label: string;
-  readonly href: string;
-  readonly platform: SocialPlatform;
+  readonly label: string
+  readonly href: string
+  readonly platform: SocialPlatform
 }
 
 export interface SiteConfig {
   /** Wordmark text, rendered in lowercase to match the existing logo. */
-  readonly name: string;
+  readonly name: string
   /** Copyright holder in the footer. Use the registered legal entity name. */
-  readonly legalName: string;
-  readonly tagline: string;
+  readonly legalName: string
+  readonly tagline: string
   /** Absolute site URL, used for metadata and social preview images. */
-  readonly url: string;
+  readonly url: string
   readonly privacy: {
-    readonly label: string;
-    readonly href: string;
-  };
-  readonly social: readonly SocialLink[];
+    readonly label: string
+    readonly href: string
+  }
+  readonly social: readonly SocialLink[]
 }
 
 export const siteConfig: SiteConfig = {
-  name: "appardas",
-  legalName: "Appardas",
-  tagline: "SME Digitalization Solutions",
-  url: "https://appardas.com",
+  name: 'appardas',
+  legalName: 'Appardas',
+  tagline: 'SME Digitalization Solutions',
+  url: 'https://appardas.com',
   privacy: {
-    label: "Privacy Notice",
-    href: "/privacy",
+    label: 'Privacy Notice',
+    href: '/privacy',
   },
   social: [
     {
-      label: "Appardas on LinkedIn",
-      href: "https://www.linkedin.com/company/appardas",
-      platform: "linkedin",
+      label: 'Appardas on LinkedIn',
+      href: 'https://www.linkedin.com/company/appardas',
+      platform: 'linkedin',
     },
     {
-      label: "Appardas on X",
-      href: "https://x.com/appardas",
-      platform: "x",
+      label: 'Appardas on X',
+      href: 'https://x.com/appardas',
+      platform: 'x',
     },
     {
       /* The current hyperlink points to the Appardas Dev Space GitHub repository */
-      label: "Appardas on GitHub",
-      href: "https://github.com/Appardas-Dev-Space",
-      platform: "github",
+      label: 'Appardas on GitHub',
+      href: 'https://github.com/Appardas-Dev-Space',
+      platform: 'github',
     },
   ],
-};
+}
