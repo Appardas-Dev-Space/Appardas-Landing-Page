@@ -1,14 +1,17 @@
-import { AboutUs } from "@/components/sections/AboutUs";
-import { Container } from "@/components/layout/Container";
-import Link from "next/link";
-import { siteConfig } from "./site.config";
+import { Container } from '@/components/layout/Container'
+import { ContactUs } from '@/components/sections/ContactUs'
+import { Services } from '@/components/sections/Services'
+import { Team } from '@/components/sections/Team'
+import Link from 'next/link'
+import { siteConfig } from './site.config'
 
 /**
  * Home page.
  *
- * Renders the intro and the About Us section (LP-05). The remaining
- * sections live on their own pages: /services (LP-06), /team (LP-07) and
- * /contact (LP-08) — placeholders are served until content is delivered.
+ * Renders the intro followed by the Services (LP-06), team (LP-07) and
+ * contact (LP-08) sections, all on one page so the `/#<section>` nav hrefs
+ * resolve natively. About Us lives on its own route at `/about`, and the
+ * privacy notice at `/privacy`.
  */
 export default function HomePage() {
   return (
@@ -32,13 +35,13 @@ export default function HomePage() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/contact#contact"
+              href="/#contact"
               className="focus-ring-inset rounded-md bg-action px-5 py-3 text-sm font-semibold text-action-text shadow-sm transition-colors hover:bg-action-hover"
             >
               Get in Touch
             </Link>
             <Link
-              href="/services#services"
+              href="/#services"
               className="rounded-md border border-line-strong px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-surface-muted"
             >
               Explore Services
@@ -47,8 +50,10 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* About Section (LP-05) */}
-      <AboutUs />
+      {/* Services, Team and Contact sections rendered together (LP-06/07/08). */}
+      <Services />
+      <Team />
+      <ContactUs />
     </div>
   )
 }
