@@ -1,0 +1,51 @@
+{
+  "eyebrow": "People",
+  "heading": "The team behind the work.",
+  "intro": "Every profile below shows only work information the individual has chosen to share. Learn more in our",
+  "members": [
+    {
+      "photo": null,
+      "name": "Calico cat",
+      "role": "Chief Executive Officer",
+      "focus": "Executive Strategy & SME Vision",
+      "description": "Guides appardas with calm instincts, championing digital relevance for local small businesses.",
+      "profileUrl": "https://www.linkedin.com/"
+    },
+    {
+      "photo": null,
+      "name": "Tabby cat",
+      "role": "Chief Technology Officer",
+      "focus": "Endpoint Services & Architecture",
+      "description": "Architect of custom endpoint pipelines and ERP bridges. Enforces high uptime and bug-free code."
+    },
+    {
+      "photo": null,
+      "name": "Siamese cat",
+      "role": "Chief Operating Officer",
+      "focus": "Business Operations & Delivery",
+      "description": "Keeps client roadmaps on time and simplifies complex enterprise resource planning workflows."
+    },
+    {
+      "photo": null,
+      "name": "Tuxedo cat",
+      "role": "Chief Creative Officer",
+      "focus": "Brand Experience & UI/UX",
+      "description": "Impeccably tailored interface design that makes every small business look distinguished.",
+      "profileUrl": "https://www.linkedin.com/"
+    },
+    {
+      "photo": null,
+      "name": "Stray cat in Bakakeng",
+      "role": "Head of SME & Community Relations",
+      "focus": "Grassroots Outreach & Client Success",
+      "description": "Listens to local business owners to make sure digital technology serves real daily needs."
+    },
+    {
+      "photo": null,
+      "name": "Ginger cat",
+      "role": "Head of Quality & Nap Strategy",
+      "focus": "Quality Assurance & Wellness",
+      "description": "Rigorously tests every release and ensures optimal cognitive rest before deployment."
+    }
+  ]
+}
