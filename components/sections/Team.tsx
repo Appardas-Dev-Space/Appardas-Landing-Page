@@ -7,6 +7,10 @@ import { Container } from '@/components/layout/Container'
  * the home page (so `/#team` anchors resolve) and reused by the `/team`
  * route for deep links.
  */
+
+/**
+ *  
+ * */
 export function Team() {
   return (
     <section
