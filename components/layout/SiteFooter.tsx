@@ -1,8 +1,8 @@
-import Link from "next/link";
+import Link from 'next/link'
 
-import { siteConfig } from "@/app/site.config";
-import { Container } from "./Container";
-import { SocialIcon } from "./SocialIcon";
+import { siteConfig } from '@/app/site.config'
+import { Container } from './Container'
+import { SocialIcon } from './SocialIcon'
 
 /**
  * Page footer — copyright, Privacy Notice, and social links.
@@ -14,7 +14,7 @@ import { SocialIcon } from "./SocialIcon";
  * place the page needs a theme override for focus.
  */
 export function SiteFooter() {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
   return (
     <footer className="mt-auto border-t border-line bg-surface-inverse [--color-focus:var(--color-focus-inverse)]">
@@ -51,5 +51,5 @@ export function SiteFooter() {
         </div>
       </Container>
     </footer>
-  );
+  )
 }

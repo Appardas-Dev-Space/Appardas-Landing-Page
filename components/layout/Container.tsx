@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react'
 
 /**
  * Centres content and applies the page's horizontal gutter.
@@ -9,10 +9,10 @@ import type { ReactNode } from "react";
  */
 export function Container({
   children,
-  className = "",
+  className = '',
 }: {
-  children: ReactNode;
-  className?: string;
+  children: ReactNode
+  className?: string
 }) {
   return (
     <div
@@ -20,5 +20,5 @@ export function Container({
     >
       {children}
     </div>
-  );
+  )
 }
