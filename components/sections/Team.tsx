@@ -9,8 +9,30 @@ import { Container } from '@/components/layout/Container'
  */
 
 /**
- *  
+ *  Team section (LP-07). Based on the wireframe, this section holds the Section with id="team": 
+ * heading and a card grid.
  * */
+const TEAM: readonly { photo: URL; name: string; role: string; bio: string }[] = [
+  {
+    photo: new URL('/images/john-doe.jpg', import.meta.url),
+    name: 'John Doe',
+    role: 'CEO',
+    bio: 'John is the founder and CEO of appardas, with over 15 years of experience in digital strategy and innovation.'
+  },
+  {
+    photo: new URL('/images/jane-smith.jpg', import.meta.url),
+    name: 'Jane Smith',
+    role: 'CTO',
+    bio: 'Jane leads our technical development team and is responsible for driving our product vision and engineering excellence.'
+  },
+  {
+    photo: new URL('/images/bob-johnson.jpg', import.meta.url),
+    name: 'Bob Johnson',
+    role: 'CMO',
+    bio: 'Bob is in charge of our marketing efforts and works closely with our sales team to drive growth and brand awareness.'
+  }
+]
+
 export function Team() {
   return (
     <section
