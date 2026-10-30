@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, master, staging, production]
     paths:
-      - "docs/meetings/**.md"
+      - 'docs/meetings/**.md'
 
 permissions:
   contents: write

@@ -107,7 +107,7 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display:
     var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', monospace;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -175,7 +175,7 @@
  * ramp is a palette reference rather than a surface colour.
  * ========================================================================== */
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-canvas: #1c1917; /* stone-900 */
   --color-surface: #292524; /* stone-800 */
   --color-surface-muted: #44403c; /* stone-700 */

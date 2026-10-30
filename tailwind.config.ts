@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 /**
  * Tailwind is the consumption layer for the tokens defined in app/theme.css.
@@ -19,7 +19,7 @@ import type { Config } from "tailwindcss";
  * ratios.
  */
 const config: Config = {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
     /**
      * Breakpoints. The acceptance criteria call out 360px, 768px and 1280px:
@@ -27,11 +27,11 @@ const config: Config = {
      * 1280px is exactly `xl`. Mobile-first, so base styles are the 360px case.
      */
     screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
     },
 
     /**
@@ -42,41 +42,41 @@ const config: Config = {
      * compiles correctly.
      */
     colors: {
-      canvas: "var(--color-canvas)",
+      canvas: 'var(--color-canvas)',
       surface: {
-        DEFAULT: "var(--color-surface)",
-        muted: "var(--color-surface-muted)",
-        inverse: "var(--color-inverse-bg)",
+        DEFAULT: 'var(--color-surface)',
+        muted: 'var(--color-surface-muted)',
+        inverse: 'var(--color-inverse-bg)',
       },
       line: {
-        DEFAULT: "var(--color-line)",
-        strong: "var(--color-line-strong)",
+        DEFAULT: 'var(--color-line)',
+        strong: 'var(--color-line-strong)',
       },
       ink: {
-        DEFAULT: "var(--color-ink)",
-        muted: "var(--color-ink-muted)",
-        inverse: "var(--color-ink-inverse)",
-        "inverse-muted": "var(--color-ink-inverse-muted)",
+        DEFAULT: 'var(--color-ink)',
+        muted: 'var(--color-ink-muted)',
+        inverse: 'var(--color-ink-inverse)',
+        'inverse-muted': 'var(--color-ink-inverse-muted)',
       },
       action: {
-        DEFAULT: "var(--color-action)",
-        hover: "var(--color-action-hover)",
-        text: "var(--color-action-text)",
-        subtle: "var(--color-action-subtle)",
+        DEFAULT: 'var(--color-action)',
+        hover: 'var(--color-action-hover)',
+        text: 'var(--color-action-text)',
+        subtle: 'var(--color-action-subtle)',
       },
-      link: "var(--color-link)",
-      focus: "var(--color-focus)",
+      link: 'var(--color-link)',
+      focus: 'var(--color-focus)',
       brand: {
-        50: "rgb(var(--color-brand-50) / <alpha-value>)",
-        100: "rgb(var(--color-brand-100) / <alpha-value>)",
-        200: "rgb(var(--color-brand-200) / <alpha-value>)",
-        300: "rgb(var(--color-brand-300) / <alpha-value>)",
-        400: "rgb(var(--color-brand-400) / <alpha-value>)",
-        500: "rgb(var(--color-brand-500) / <alpha-value>)",
-        600: "rgb(var(--color-brand-600) / <alpha-value>)",
-        700: "rgb(var(--color-brand-700) / <alpha-value>)",
-        800: "rgb(var(--color-brand-800) / <alpha-value>)",
-        900: "rgb(var(--color-brand-900) / <alpha-value>)",
+        50: 'rgb(var(--color-brand-50) / <alpha-value>)',
+        100: 'rgb(var(--color-brand-100) / <alpha-value>)',
+        200: 'rgb(var(--color-brand-200) / <alpha-value>)',
+        300: 'rgb(var(--color-brand-300) / <alpha-value>)',
+        400: 'rgb(var(--color-brand-400) / <alpha-value>)',
+        500: 'rgb(var(--color-brand-500) / <alpha-value>)',
+        600: 'rgb(var(--color-brand-600) / <alpha-value>)',
+        700: 'rgb(var(--color-brand-700) / <alpha-value>)',
+        800: 'rgb(var(--color-brand-800) / <alpha-value>)',
+        900: 'rgb(var(--color-brand-900) / <alpha-value>)',
       },
     },
 
@@ -86,46 +86,46 @@ const config: Config = {
      * not be reachable without adding it to app/theme.css first.
      */
     fontSize: {
-      xs: ["var(--font-size-xs)", { lineHeight: "var(--leading-snug)" }],
-      sm: ["var(--font-size-sm)", { lineHeight: "var(--leading-snug)" }],
-      base: ["var(--font-size-base)", { lineHeight: "var(--leading-normal)" }],
-      lg: ["var(--font-size-lg)", { lineHeight: "var(--leading-normal)" }],
-      xl: ["var(--font-size-xl)", { lineHeight: "var(--leading-snug)" }],
-      "2xl": ["var(--font-size-2xl)", { lineHeight: "var(--leading-tight)" }],
-      "3xl": ["var(--font-size-3xl)", { lineHeight: "var(--leading-tight)" }],
-      "4xl": ["var(--font-size-4xl)", { lineHeight: "var(--leading-tight)" }],
-      "5xl": ["var(--font-size-5xl)", { lineHeight: "var(--leading-tight)" }],
+      xs: ['var(--font-size-xs)', { lineHeight: 'var(--leading-snug)' }],
+      sm: ['var(--font-size-sm)', { lineHeight: 'var(--leading-snug)' }],
+      base: ['var(--font-size-base)', { lineHeight: 'var(--leading-normal)' }],
+      lg: ['var(--font-size-lg)', { lineHeight: 'var(--leading-normal)' }],
+      xl: ['var(--font-size-xl)', { lineHeight: 'var(--leading-snug)' }],
+      '2xl': ['var(--font-size-2xl)', { lineHeight: 'var(--leading-tight)' }],
+      '3xl': ['var(--font-size-3xl)', { lineHeight: 'var(--leading-tight)' }],
+      '4xl': ['var(--font-size-4xl)', { lineHeight: 'var(--leading-tight)' }],
+      '5xl': ['var(--font-size-5xl)', { lineHeight: 'var(--leading-tight)' }],
     },
 
     fontWeight: {
-      normal: "var(--font-weight-normal)",
-      medium: "var(--font-weight-medium)",
-      semibold: "var(--font-weight-semibold)",
-      bold: "var(--font-weight-bold)",
+      normal: 'var(--font-weight-normal)',
+      medium: 'var(--font-weight-medium)',
+      semibold: 'var(--font-weight-semibold)',
+      bold: 'var(--font-weight-bold)',
     },
 
     borderRadius: {
-      none: "0px",
-      sm: "var(--radius-sm)",
-      DEFAULT: "var(--radius-md)",
-      md: "var(--radius-md)",
-      lg: "var(--radius-lg)",
-      full: "9999px",
+      none: '0px',
+      sm: 'var(--radius-sm)',
+      DEFAULT: 'var(--radius-md)',
+      md: 'var(--radius-md)',
+      lg: 'var(--radius-lg)',
+      full: '9999px',
     },
 
     boxShadow: {
-      none: "0 0 #0000",
-      sm: "var(--shadow-sm)",
-      DEFAULT: "var(--shadow-md)",
-      md: "var(--shadow-md)",
-      lg: "var(--shadow-lg)",
+      none: '0 0 #0000',
+      sm: 'var(--shadow-sm)',
+      DEFAULT: 'var(--shadow-md)',
+      md: 'var(--shadow-md)',
+      lg: 'var(--shadow-lg)',
     },
 
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        display: ["var(--font-display)"],
-        mono: ["var(--font-mono)"],
+        sans: ['var(--font-sans)'],
+        display: ['var(--font-display)'],
+        mono: ['var(--font-mono)'],
       },
 
       /**
@@ -134,19 +134,19 @@ const config: Config = {
        * that varies per breakpoint: `py-section-y md:py-section-y-lg`.
        */
       spacing: {
-        "section-y": "var(--space-section-y)",
-        "section-y-lg": "var(--space-section-y-lg)",
-        "section-x": "var(--space-section-x)",
-        "section-x-lg": "var(--space-section-x-lg)",
+        'section-y': 'var(--space-section-y)',
+        'section-y-lg': 'var(--space-section-y-lg)',
+        'section-x': 'var(--space-section-x)',
+        'section-x-lg': 'var(--space-section-x-lg)',
       },
 
       maxWidth: {
-        content: "var(--content-max-width)",
-        prose: "var(--content-text-max-width)",
+        content: 'var(--content-max-width)',
+        prose: 'var(--content-text-max-width)',
       },
     },
   },
   plugins: [],
-};
+}
 
-export default config;
+export default config
